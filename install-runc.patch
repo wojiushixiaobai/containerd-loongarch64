@@ -1,0 +1,14 @@
+diff --git a/script/setup/install-runc b/script/setup/install-runc
+index 07a3be7..7aefe84 100755
+--- a/script/setup/install-runc
++++ b/script/setup/install-runc
+@@ -37,6 +37,9 @@ function install_runc() {
+ 	git clone "${RUNC_REPO}" "${TMPROOT}"/runc
+ 	pushd "${TMPROOT}"/runc
+ 	git checkout "${RUNC_VERSION}"
++	sed -i 's@|| s390x@|| s390x || loong64@g' libcontainer/system/syscall_linux_64.go
++	sed -i 's@riscv64 s390x@riscv64 s390x loong64@g' libcontainer/system/syscall_linux_64.go
++	sed -i 's@--dirty @@g' Makefile
+ 	make BUILDTAGS='seccomp' runc
+ 	$SUDO make install
+ 	popd
