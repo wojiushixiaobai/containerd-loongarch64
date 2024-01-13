@@ -15,7 +15,7 @@ RUN set -ex; \
     apt-get install -y ${DEPENDENCIES}; \
     rm -rf /var/lib/apt/lists/*
 
-ARG CONTAINERD_VERSION=v1.7.9
+ARG CONTAINERD_VERSION=v1.7.12
 
 ENV CONTAINERD_VERSION=${CONTAINERD_VERSION}
 ENV GOPROXY=https://goproxy.io
